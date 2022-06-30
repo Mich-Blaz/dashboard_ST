@@ -3,6 +3,7 @@ import pandas as pd
 import requests
 import matplotlib.pyplot as plt
 import seaborn as sns
+
 df = pd.read_csv("BankNote_Authentication.csv")
 
 st.set_page_config(
@@ -71,6 +72,9 @@ else:
     value=df.loc[id_bk,df.columns[3]],
     
 )
+st.write("____")
+st.write("*Body à envoyer dans la requête http de l'api de pred:*   \n" +str(dic_id))
+st.write("____")
 
 
 res=pd.Series(requests.post('https://michblazfastapi.herokuapp.com/predict',json=dic_id).json())
@@ -91,7 +95,6 @@ ax.pie(sizes,  labels=labels, autopct='%1.1f%%',
 ax.axis('equal')
 cont2.pyplot(fig)
 
-st.write("*Body à envoyer dans la requête http de l'api de pred:*   \n" +str(dic_id))
 
 # variance,skewness,curtosis,entropy,class
 
